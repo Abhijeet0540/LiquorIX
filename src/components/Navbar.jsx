@@ -52,7 +52,7 @@ const Navbar = () => {
           </Link>
 
           {/* Center Navigation (Desktop) */}
-          <div className="hidden lg:flex items-center space-x-10 text-sm font-medium tracking-[0.2em] uppercase opacity-80">
+          <div className="hidden lg:flex items-center space-x-10 text-sm font-medium tracking-[0.2em] uppercase opacity-90">
             {navLinks.map(link => (
               <Link 
                 key={link.name} 
@@ -95,18 +95,27 @@ const Navbar = () => {
       {/* Mobile Menu Overlay */}
       <div className="mobile-menu-overlay fixed inset-0 z-[55] bg-black opacity-0 pointer-events-none transition-opacity duration-300">
          <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/10 to-transparent"></div>
-         <div className="h-full flex flex-col justify-center px-12 space-y-12 relative z-10">
+         
+         {/* Dedicated Close Button for Overlay */}
+         <button 
+           onClick={() => setIsMobileMenuOpen(false)}
+           className="absolute top-10 right-10 z-[70] p-4 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 transition-all group lg:hidden"
+         >
+            <X className="w-8 h-8 text-[#D4AF37] group-hover:scale-110 transition-transform" />
+         </button>
+
+         <div className="h-full flex flex-col justify-start px-8 md:px-12 pt-32 pb-12 space-y-8 md:space-y-12 relative z-10 overflow-y-auto">
             <span className="text-[10px] font-bold text-[#D4AF37] uppercase tracking-[0.8em] opacity-40">Menu Navigation</span>
-            <div className="flex flex-col space-y-8">
+            <div className="flex flex-col space-y-6 md:space-y-8">
                {navLinks.map((link, i) => (
                  <Link 
                    key={link.name} 
                    to={link.path} 
                    onClick={() => setIsMobileMenuOpen(false)}
-                   className="mobile-link text-5xl font-serif font-bold text-white no-underline hover:text-[#D4AF37] transition-all flex items-center justify-between group"
+                   className="mobile-link text-4xl md:text-6xl font-serif font-bold text-white no-underline hover:text-[#D4AF37] transition-all flex items-center justify-between group py-3 border-b border-white/5 last:border-0"
                  >
                    <span>{link.name}</span>
-                   <ChevronRight className="w-10 h-10 opacity-0 group-hover:opacity-100 group-hover:translate-x-4 transition-all" />
+                   <ChevronRight className="w-8 h-8 opacity-0 group-hover:opacity-100 group-hover:translate-x-4 transition-all" />
                  </Link>
                ))}
             </div>
